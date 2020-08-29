@@ -1,5 +1,7 @@
 //jshint esversion:6
 
+//For Next Time: Watch from 15:27
+
 // GET REQUEST
 function getTodos() {
   // axios({
@@ -78,12 +80,27 @@ function addTodo() {
 
 // PUT/PATCH REQUEST
 function updateTodo() {
-  console.log('PUT/PATCH Request');
+  axios.patch("https://jsonplaceholder.typicode.com/todos/4", {
+    title: "Update Todo",
+    completed: true
+  })
+  .then(res => {
+    showOutput(res);
+  })
+  .catch(err => {
+    console.error(err);
+  });
 }
 
 // DELETE REQUEST
 function removeTodo() {
-  console.log('DELETE Request');
+  axios.delete("https://jsonplaceholder.typicode.com/todos/1")
+  .then(res => {
+    showOutput(res);
+  })
+  .catch(err => {
+    console.error(err);
+  });
 }
 
 // SIMULTANEOUS DATA
