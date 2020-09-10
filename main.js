@@ -65,10 +65,8 @@ function addTodo() {
   // });
 
   axios.post("https://jsonplaceholder.typicode.com/todos", {
-    data: {
-      title: "New Todo",
-      completed: false
-    }
+    title: "New Todo",
+    completed: false
   })
   .then(res => {
     showOutput(res);
