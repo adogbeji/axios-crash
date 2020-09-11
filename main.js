@@ -103,7 +103,29 @@ function removeTodo() {
 
 // SIMULTANEOUS DATA
 function getData() {
-  console.log('Simultaneous Request');
+  // axios.all([
+  //   axios.get("https://jsonplaceholder.typicode.com/todos"),
+  //   axios.get("https://jsonplaceholder.typicode.com/posts")
+  // ])
+  // .then(res => {  // These only run when Promises above have been fulfilled
+  //   console.log(res[0]);
+  //   console.log(res[1]);
+  //   showOutput(res[1]);  // We can only pass ONE argument into Function!
+  // })
+  // .catch(err => {
+  //   console.error(err);
+  // });
+
+  axios.all([
+    axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5"),
+    axios.get("https://jsonplaceholder.typicode.com/posts?_limit=5")  // axios.spread() takes a function; variable names for each request are passed as arguments
+  ])
+  .then(axios.spread((todos, posts) => {
+    showOutput(posts);  // Do whatever you want with each response
+  }))
+  .catch(err => {
+    console.error(err);
+  });
 }
 
 // CUSTOM HEADERS
